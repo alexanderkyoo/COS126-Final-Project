@@ -1,20 +1,35 @@
 public class Grades {
-    private String[] classes;
-    private Stack<Double>[] grades;
+    private Course[] courses;
 
-
-    public Grades(String[] classes) {
-        this.classes = classes;
+    public Grades(Course[] courses) {
+        this.courses = courses;
     }
 
-    public String assignment(String class, int time, int intelligence) {
-        int index = 0;
-        for (int i = 0; i < classes.length; i++) {
-
+    public int getClassIndex(String course) {
+        for (int i = 0; i < courses.length; i++) {
+            if (course.equals(courses[i].getName())) {
+                return i;
+            }
         }
+        return -1;
+    }
+
+    public double getClassGrade(String course) {
+        int index = getClassIndex(course);
+        return courses[index].getAvg();
+    }
+
+    public double getGPA() {
+        double avg = 0;
+        for (int i = 0; i < courses.length; i++) {
+            avg += courses[i].getAvg();
+        }
+        avg = avg / courses.length;
+        return 4 * avg / 100;
     }
 
     public static void main(String[] args) {
-
     }
+
+
 }
