@@ -1,11 +1,13 @@
+
+
 import java.util.ArrayList;
 
 public class Course {
-    private String Cname;
+    private String cName;
     private ArrayList<Double> grades;
 
     public Course(String name) {
-        Cname = name;
+        cName = name;
     }
 
     public void addGrade(double grade) {
@@ -14,9 +16,9 @@ public class Course {
 
     public String getName()
     {
-        return Cname;
+        return cName;
     }
-    
+
     public double getAvg() {
         if (grades.isEmpty()) {
             return 100;
