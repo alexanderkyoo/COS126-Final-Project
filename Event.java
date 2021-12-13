@@ -22,7 +22,6 @@ public class Event {
     }
 
     public static Event generateEvent(int charisma) {
-        Event nextEvent;
         String name;
         double price;
         boolean willing;
@@ -47,11 +46,6 @@ public class Event {
             price = Double.MAX_VALUE;
             willing = false;
         }
-        nextEvent = new Event(name, price, willing);
-        return nextEvent;
-    }
-
-    public static void main(String[] args) {
-
+        return new Event(name, price, willing);
     }
 }
