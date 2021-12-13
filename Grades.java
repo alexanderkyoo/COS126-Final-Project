@@ -1,35 +1,35 @@
+import java.util.ArrayList;
+
 public class Grades {
-    private Course[] courses;
+    private static ArrayList<Assignment> assignmentList = new ArrayList<Assignment>();
 
-    public Grades(Course[] courses) {
-        this.courses = courses;
+    public static void addAssignment(Assignment a) {
+        assignmentList.add(a);
     }
 
-    public int getClassIndex(String course) {
-        for (int i = 0; i < courses.length; i++) {
-            if (course.equals(courses[i].getName())) {
-                return i;
-            }
+    public static void scoreAssignment(Assignment a, Person p) {
+        int tier = a.getTier();
+        int intelligence = p.getIntelligence();
+        // SAMPLE CALCULATION --> change this calculation later
+        double score = tier * intelligence;
+        a.setScore(score);
+    }
+
+    public static double calculateGPA() {
+        if (assignmentList.size() == 0)
+            return 100.0;
+
+        double total = 0.0;
+        for (Assignment a : assignmentList) {
+            total += a.getScore();
         }
-        return -1;
+        return total / assignmentList.size();
     }
 
-    public double getClassGrade(String course) {
-        int index = getClassIndex(course);
-        return courses[index].getAvg();
-    }
+    /* public String assignment(String class, int time, int intelligence) {
+        int index = 0;
+        for (int i = 0; i < classes.length; i++) {
 
-    public double getGPA() {
-        double avg = 0;
-        for (int i = 0; i < courses.length; i++) {
-            avg += courses[i].getAvg();
         }
-        avg = avg / courses.length;
-        return 4 * avg / 100;
-    }
-
-    public static void main(String[] args) {
-    }
-
-
+    } */
 }
