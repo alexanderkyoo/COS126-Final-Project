@@ -13,6 +13,18 @@ public class Assignment {
         score = 0.0;
     }
 
+    public String getAssignmentMessage() {
+        return assignmentMessage;
+    }
+
+    public static String getAssignmentTopic() {
+        return assignmentTopic;
+    }
+
+    public static String getAssignmentType() {
+        return assignmentType;
+    }
+
     public int getTier() {
         return tier;
     }
@@ -63,5 +75,5 @@ public class Assignment {
     public String toString() {
         return assignmentMessage;
     }
-    
+
 }
