@@ -1,5 +1,11 @@
 public class FreshmanSim {
 
+    public static void advanceDay() {
+        // run assignment and event generators
+        // ask user how many hours to spend on each assignment/event
+        // calculate corresponding grade changes, attribute changes, etc.
+    }
+
     public static void main(String[] args) {
 
         StdOut.println("Welcome to the Princeton Freshman Simulator!");
@@ -18,7 +24,7 @@ public class FreshmanSim {
                 levelChecked = true;
                 balance = 5000;
                 bank = new Financials(balance);
-                player = new Person(100, 100, bank);
+                player = new Person(100, 100, bank, 100);
                 StdOut.println(player);
             }
             else if (difficulty == 2) {
@@ -26,7 +32,7 @@ public class FreshmanSim {
                 levelChecked = true;
                 balance = 2500;
                 bank = new Financials(balance);
-                player = new Person(80, 80, bank);
+                player = new Person(80, 80, bank, 80);
                 StdOut.println(player);
             }
             else if (difficulty == 3) {
@@ -34,7 +40,7 @@ public class FreshmanSim {
                 levelChecked = true;
                 balance = 100;
                 bank = new Financials(balance);
-                player = new Person(50, 50, bank);
+                player = new Person(50, 50, bank, 50);
                 StdOut.println(player);
             }
             else {
