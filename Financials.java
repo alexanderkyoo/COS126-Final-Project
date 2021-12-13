@@ -10,7 +10,7 @@ public class Financials {
     }
 
     public String deposit(double amount) {
-        Double MIN_DEPOSIT = 0.01;
+        double MIN_DEPOSIT = 0.01;
         if (amount < MIN_DEPOSIT) {
             return "You must deposit at least $0.01 in your account!";
         }
