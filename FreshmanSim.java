@@ -48,6 +48,7 @@ public class FreshmanSim {
 
         StdOut.println("You slept " + hours + " hours.");
         player.incrementHealth(hours - 8);
+        if (player.getHealth() > 100) player.incrementHealth(100 - player.getHealth());
         StdOut.println("Your health is now " + player.getHealth() + ".");
         if (player.getHealth() <= 0) {
             alive = false;
