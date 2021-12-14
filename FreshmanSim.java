@@ -112,6 +112,9 @@ public class FreshmanSim {
             alive = false;
         }
         StdOut.println("Your GPA is now " + Grades.calculateGPA() + ".");
+        if (Grades.calculateGPA() > 70) player.incrementintelligence(1);
+        else player.incrementintelligence(-1);
+
         if (Grades.calculateGPA() < 50) {
             alive = false;
             StdOut.println("Failures don't belong in Princeton! Get out!");
