@@ -56,14 +56,19 @@ public class Event {
         if (charisma > 80) {
             String[] events = {
                     "presidential nomination", "secret party", "VIP get-together",
-                    "ritualistic headbutting ceremony", "pickup game"
+                    "ritualistic headbutting ceremony", "pickup game", "elitist society event",
+                    "eating club", "finance club event"
             };
             name = events[StdRandom.uniform(events.length)];
             price = StdRandom.uniform(0, 400);
             willing = true;
         }
         else if (charisma > 30) {
-            String[] events = { "party", "eat out", "grill", "street fight", "hit job" };
+            String[] events = {
+                    "party", "dinner", "grill", "street fight", "eating club event",
+                    "hackathon", "football game", "concert", "lawnparties",
+                    "comedy show", "street race"
+            };
             name = events[StdRandom.uniform(events.length)];
             price = StdRandom.uniform(0, 200);
             willing = true;
@@ -75,7 +80,7 @@ public class Event {
             willing = false;
         }
         if (willing) {
-            message = "You have been invited to a " + name;
+            message = "You have been invited to a(n) " + name;
             return new Event(name, price, true, message);
         }
         else {
@@ -106,4 +111,3 @@ public class Event {
         StdOut.println(ex3);
     }
 }
-
