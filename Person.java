@@ -34,7 +34,9 @@ public class Person {
     // Increments player's intelligence by a, which can be negative or positive
     public void incrementintelligence(int a) {
         intelligence += a;
-        StdOut.println("Your intelligence changed by " + a + "!");
+        if (a > 0) StdOut.println("Your intelligence increased by " + a + "!");
+        else if (a < 0) StdOut.println("Your intelligence decreased by " + a + "!");
+
     }
 
     // Increments player's charisma by a, which can be negative or positive
