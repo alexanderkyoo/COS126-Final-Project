@@ -1,14 +1,18 @@
+// Represents the bank account/on hand money of the player, and allows for
+// withdrawal and deposit
 public class Financials {
-    private double balance;
+    private double balance; // Represents the total balance in the account
 
     public Financials(double balance) {
         this.balance = balance;
     }
 
+    // Retrieves the balance
     public double getBalance() {
         return balance;
     }
 
+    // Deposits money into the balance, but has a minimum deposit value
     public String deposit(double amount) {
         double MIN_DEPOSIT = 0.01;
         if (amount < MIN_DEPOSIT) {
@@ -18,6 +22,7 @@ public class Financials {
         return "You now have $" + balance + " in your account!";
     }
 
+    // Withdraws money from the balance, but limited by amount in balance
     public String withdraw(double amount) {
         if (amount > balance) {
             return "Are you broke? You don't have that kind of money!";
