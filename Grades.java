@@ -44,4 +44,15 @@ public class Grades {
         else
             return (double) ((int) (100 * (total / weight))) / 100;
     }
+
+    public static void main(String[] args) {
+        Course bse = new Course("BSE");
+        Assignment a = Assignment.generateAssignment(bse);
+        Financials bank = new Financials(100);
+        Person p = new Person(50, 50, bank, 60);
+        Grades.addAssignment(a);
+        Grades.scoreAssignment(a, p, 5);
+        StdOut.println(a.getScore());
+        StdOut.println(Grades.calculateGPA());
+    }
 }
