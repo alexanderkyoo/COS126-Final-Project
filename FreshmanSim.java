@@ -24,14 +24,14 @@ public class FreshmanSim {
                     "How long do you wish to spend on this " + assignments[i].getAssignmentType()
                             + " about " + assignments[i].getAssignmentTopic() + "?");
             StdOut.println("------------------------------");
-            StdOut.println("Enter an *integer* from 0 to " + hours + ":");
+            StdOut.println("Enter an integer from 0 to " + hours + ":");
             int work = (int) StdIn.readDouble();
             boolean hoursChecked = false;
             while (!hoursChecked) {
                 if (work >= 0 && work <= hours) {
                     hours -= work;
                     Grades.addAssignment(assignments[i]);
-                    Grades.scoreAssignment(assignments[i], player);
+                    Grades.scoreAssignment(assignments[i], player, work);
                     StdOut.println(
                             "You scored a " + assignments[i].getScore() + " on the " +
                                     assignments[i].getAssignmentType() + ". \n");
@@ -89,7 +89,7 @@ public class FreshmanSim {
                 levelChecked = true;
                 balance = 5000;
                 bank = new Financials(balance);
-                player = new Person(100, 100, bank, 100);
+                player = new Person(100, 100, bank, 85);
                 StdOut.println(player);
             }
             else if (difficulty == 2) {
@@ -97,7 +97,7 @@ public class FreshmanSim {
                 levelChecked = true;
                 balance = 2500;
                 bank = new Financials(balance);
-                player = new Person(80, 80, bank, 80);
+                player = new Person(80, 80, bank, 70);
                 StdOut.println(player);
             }
             else if (difficulty == 3) {
@@ -105,7 +105,7 @@ public class FreshmanSim {
                 levelChecked = true;
                 balance = 100;
                 bank = new Financials(balance);
-                player = new Person(50, 50, bank, 50);
+                player = new Person(50, 50, bank, 60);
                 StdOut.println(player);
             }
             else {
