@@ -1,9 +1,12 @@
+// Represents an assignment given to the player through a course
+// Allows for the generation of assignments and manipulation of assignment
+// difficulty, type, and topic.
 public class Assignment {
-    private String assignmentType;
-    private String assignmentTopic;
-    private String assignmentMessage;
-    private int tier;
-    private double score;
+    private String assignmentType; // Represents the type of assignment
+    private String assignmentTopic; // Reprsents the topic of the assignment
+    private String assignmentMessage; // Represents the String form of the assignment
+    private int tier; // Represents the tier of assignment, lower being harder
+    private double score; // Represents the final score on the assignment
 
     public Assignment(String type, int assignmentTier, String topic, String message) {
         tier = assignmentTier;
@@ -13,30 +16,38 @@ public class Assignment {
         score = 0.0;
     }
 
+    // Retrieves the assignment's message
     public String getAssignmentMessage() {
         return assignmentMessage;
     }
 
+    // Retrieves the topic of the assignment
     public String getAssignmentTopic() {
         return assignmentTopic;
     }
 
+    // Retrieves the type of assignment
     public String getAssignmentType() {
         return assignmentType;
     }
 
+    // Retrieves the tier of the assignment
     public int getTier() {
         return tier;
     }
 
+    // Sets the score of the assignment to a given score
     public void setScore(double score) {
         this.score = score;
     }
 
+    // Retrieves the score of the assignment
     public double getScore() {
         return score;
     }
 
+    // Generates assignments from a list of topics and types
+    // Returns a new assignment and gives it a tier
     public static Assignment generateAssignment(Course course) {
         String assignmentType = "";
         String assignmentTopic = "";
@@ -83,6 +94,7 @@ public class Assignment {
         return new Assignment(assignmentType, tier, assignmentTopic, message);
     }
 
+    // Converts the assignment into String form through the assignmentMessage
     public String toString() {
         return assignmentMessage;
     }
