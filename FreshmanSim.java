@@ -1,5 +1,5 @@
 public class FreshmanSim {
-    private static int day = 0;
+    private static int day = 1;
     private static Person player;
     private static Course course;
     private static Grades grades;
@@ -11,18 +11,27 @@ public class FreshmanSim {
         StdOut.println("Day " + day + " begins!");
         int hours = 24;
         Assignment todays = Assignment.generateAssignment(course);
+        StdOut.println(todays);
         StdOut.println("How long do you wish to spend on this " + todays.getAssignmentType() + "?");
         StdOut.println("------------------------------");
-        StdOut.println("Enter a number from 0 to " + hours + ":");
-        int work = StdIn.readInt();
+        StdOut.println("Enter an *integer* from 0 to " + hours + ":");
+        int work = (int) StdIn.readDouble();
+
         boolean hoursChecked = false;
         while (!hoursChecked) {
-            if (work >= 0 || work <= hours) {
+            if (work >= 0 && work <= hours) {
                 hours -= work;
-                grades.addAssignment(todays);
-                grades.scoreAssignment(todays, player);
+                Grades.addAssignment(todays);
+                Grades.scoreAssignment(todays, player);
                 StdOut.println(
-                        "You scored a " + todays.getScore() + todays.getAssignmentType() + ".");
+                        "You scored a " + todays.getScore() + " on the " +
+                                todays.getAssignmentType() + ".");
+                hoursChecked = true;
+            }
+            else {
+                StdOut.println("There is not enough time in the day for that."
+                                       + "\n" + "Enter the number of hours: ");
+                work = StdIn.readInt();
             }
         }
 
@@ -80,11 +89,13 @@ public class FreshmanSim {
                 StdOut.println("You selected B.S.E.");
                 course = new Course("BSE");
                 concentrationChecked = true;
+                FreshmanSim.advanceDay();
             }
             else if (concentration == 2) {
                 StdOut.println("You selected A.B.");
                 course = new Course("AB");
                 concentrationChecked = true;
+                FreshmanSim.advanceDay();
             }
             else {
                 StdOut.println("Please select an applicable concentration area.");
