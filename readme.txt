@@ -22,10 +22,10 @@ Project title: FreshmanSim
 
 CodePost link for proposal feedback: https://codepost.io/code/507054
 
-Link to project video:
+Link to project video: https://www.youtube.com/watch?v=rRDnj15cim0
 
 Approximate number of hours to complete the final project
-Number of hours:
+Number of hours: 35
 
 /**********************************************************************
  * Required Questions                                                 *
@@ -132,7 +132,7 @@ Describe how your program accepts user input and mention the line number(s) at
 which your program accepts user input.
 
 The program accepts user input from the command line in FreshmanSim.java at lines
-37, 61, 81, 96, 153, 158, 191, 207. This input is used to determine the way that
+37, 61, 81, 96, 169, 201, 207, 223. This input is used to determine the way that
 the game unfolds.
 
 
@@ -154,7 +154,7 @@ functionality (include the variable name and the line number(s) at which it is
 declared and initialized).
 
 Our program uses arrays to store the mutable parts of the event and assignment
-statements. Examples of this are in lines 57, 66 and 72, of Event.java and 55, 62,
+statements. Examples of this are in lines 57, 67 and 77, of Event.java and 55, 62,
 66, and 72 of Assignment.java. Other data structures used include an ArrayList,
 in Grades.java at line 6.
 
@@ -162,22 +162,91 @@ in Grades.java at line 6.
 List the two custom functions written by your project group, including function
 signatures and line numbers; if your project group wrote more than two custom
 functions, choose the two functions that were most extensively tested.
-1.
+1. public static Assignment generateAssignment(Course course) - Assignment.java: 51 - 99
 
-2.
+2. public static double calculateGPA() - Grades.java: 33 - 46
 
 List the line numbers where you test each of your two custom functions twice.
 For each of the four tests (two for each function), explain what was being
 tested and the expected result. For non-textual results (e.g. graphical or
 auditory), you may describe in your own words what the expected result
 should be or reference output files (e.g. images, audio files).
+
 1.
+
+generateAssignment() is tested at Assignment.java: 107-128.
+
+Here, the creation of an assignment is tested. Specifically, an A.B. assignment
+creation is tested. The expected output (outputted with the toString() method) is a
+string of the form: "You have been assigned a(n) [assignmentType] on + [assignmentTopic]."
+[assignmentType] should be one of: "paper", "reading", "discussion", "close reading", "exam",
+since the AB concentration was specified. [assignmentTopic] should be one of:
+    "18th century sex appeal", "gargoyles", "the history of P = NP",
+    "monarchs", "the emu war", "dinosaur ethics", "life as a clock",
+    "the history of pepper jack cheese", "Pepperidge farms", "cranberry stomping",
+    "the music theory of Weird Al."
+
+Since an Assignment object is returned, we also tested the associated methods of
+the Assignment class. This verifies that the Assignment object returned is viable:
+
+if [assignmentType] is "exam" and [assignmentTopic] is "Pepperidge farms"
+    The expected result of setting setScore(12.3) and then calling getScore() is: 12.3.
+    The expected result of getTier() is 1.
+    The expected result of getAssignmentTopic() is "Pepperidge farms"
+    The expected result of getAssignmentType() is "exam"
+    The expected result of getAssignmentMessage() "You have been assigned a(n) exam on Pepperidge farms"
 
 2.
 
+generateAssignment() is tested again at Assignment.java: 107-128.
+
+Here, the creation of an assignment is tested. Specifically, a B.S.E. assignment
+creation is tested. The expected output (outputted with the toString() method) is a
+string of the form: "You have been assigned a(n) [assignmentType] on + [assignmentTopic]."
+[assignmentType] should be one of: "problem set", "exam", "exam prep", "lab report", "quiz"
+since the BSE concentration was specified. [assignmentTopic] should be one of:
+    "multivariable calculus", "titrations", "geometry of plates",
+    "intermolecular bonding", "the reproductive system", "rat anatomy",
+    "inheritance", "recursion", "Sierpinski's triangles", "boolean algebra",
+    "arson."
+
+Since an Assignment object is returned, we also tested the associated methods of
+the Assignment class. This verifies that the Assignment object returned is viable:
+
+if [assignmentType] is "problem set" and [assignmentTopic] is "boolean algebra"
+    The expected result of setting setScore(15.6) and then calling getScore() is: 15.6.
+    The expected result of getTier() is 3.
+    The expected result of getAssignmentTopic() is "boolean algebra"
+    The expected result of getAssignmentType() is "problem set"
+    The expected result of getAssignmentMessage() is:
+        "You have been assigned a(n) problem set on boolean algebra"
+
 3.
+calculateGPA() is tested at Grades.java: 51-58.
+
+Here, the calculation of a player's GPA is tested. The expected output is based
+on a collection of multiple assignments. As a result, Course, Assignment, Financials,
+and a Person object are created.
+
+The expected output of printing the result of calculateGPA() with an ArrayList
+of Assignments of size: 1, and the score of the assignment being: 75.0, and the
+tier of the assignment being 3 is: 75.0.
 
 4.
+calculateGPA() is tested again at Grades.java: 60-65.
+
+Here, the calculation of a player's GPA is tested with more than one assignment.
+The expected output is based on a collection of multiple assignments, that are weighted based on
+the tier of the assignment.
+
+If the ArrayList of Assignments is of size: 2, the score of the assignments are
+75.0 and 70.0 respectively, and the tiers of the assignments  are 3 and 2
+respectively, then the expected output of calculateGPA() is 72.0.
+
+
+The expected output of printing the result of calculateGPA()  with an ArrayList
+of Assignments of size: 1, and the score of the assignment being: 75.0 is:
+75.0.
 
 /**********************************************************************
  * Citing Resources                                                   *
@@ -185,9 +254,6 @@ should be or reference output files (e.g. images, audio files).
 
 List below *EVERY* resource your project group looked at (bullet lists and
 links suffice).
-
-
-
 
 
 Remember that you should *ALSO* be citing every resource that informed your
