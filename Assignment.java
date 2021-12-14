@@ -104,14 +104,27 @@ public class Assignment {
     }
 
     public static void main(String[] args) {
+        // Testing for generateAssignment() (AB specified)
         Course ab = new Course("AB");
         Assignment superbAss = Assignment.generateAssignment(ab);
         StdOut.println(superbAss);
+        // Testing for generateAssignment() (BSE specified)
+        Course bse = new Course("BSE");
+        Assignment bseAssn = Assignment.generateAssignment(bse);
+        // Testing the returned Assignment object for both AB and BSE versions
         superbAss.setScore(12.3);
-        StdOut.println(superbAss.getScore());
-        StdOut.println(superbAss.getTier());
-        StdOut.println(superbAss.getAssignmentTopic());
-        StdOut.println(superbAss.getAssignmentType());
-        StdOut.println(superbAss.getAssignmentMessage());
+        bseAssn.setScore(15.6);
+        StdOut.println("------------   AB  --------------");
+        StdOut.println("get Score: " + superbAss.getScore());
+        StdOut.println("get Tier: " + superbAss.getTier());
+        StdOut.println("get Topic: " + superbAss.getAssignmentTopic());
+        StdOut.println("get Type: " + superbAss.getAssignmentType());
+        StdOut.println("get Message: " + superbAss.getAssignmentMessage());
+        StdOut.println("------------   BSE   -------------");
+        StdOut.println("get Score: " + bseAssn.getScore());
+        StdOut.println("get Tier: " + bseAssn.getTier());
+        StdOut.println("get Topic: " + bseAssn.getAssignmentTopic());
+        StdOut.println("get Type: " + bseAssn.getAssignmentType());
+        StdOut.println("get Message: " + bseAssn.getAssignmentMessage());
     }
 }
