@@ -1,9 +1,11 @@
+// Acts as a runner for the overall game
+// The main engine of our MVP
 public class FreshmanSim {
-    private static int day = 1;
-    private static Person player;
-    private static Course course;
-    private static Grades grades;
-    private static boolean alive = true;
+    private static int day = 1; // Counter for the days
+    private static Person player; // The player
+    private static Course course; // The course the player decides on
+    private static Grades grades; // The grades of the player
+    private static boolean alive = true; // The tracker for game running
 
     public static void advanceDay() {
         // run assignment and event generators
