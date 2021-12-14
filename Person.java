@@ -41,6 +41,11 @@ public class Person {
         charisma += a;
     }
 
+    // Retrieves player's bank account
+    public Financials getBank() {
+        return bank;
+    }
+
     // Retrieves player's health
     public int getHealth() {
         return health;
