@@ -6,14 +6,14 @@ public class Course {
         cName = name;
     }
 
-    // Retrieves the course name and also functions as the toString method
-    public String toString() {
+    // Retrieves the course name
+    public String getName() {
         return cName;
     }
 
 
     public static void main(String[] args) {
         Course bezosBuks = new Course("Bezos Bucks");
-        StdOut.println(bezosBuks);
+        StdOut.println(bezosBuks.getName());
     }
 }
