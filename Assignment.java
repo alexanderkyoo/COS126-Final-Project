@@ -17,11 +17,11 @@ public class Assignment {
         return assignmentMessage;
     }
 
-    public static String getAssignmentTopic() {
+    public String getAssignmentTopic() {
         return assignmentTopic;
     }
 
-    public static String getAssignmentType() {
+    public String getAssignmentType() {
         return assignmentType;
     }
 
