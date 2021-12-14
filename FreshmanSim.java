@@ -44,6 +44,14 @@ public class FreshmanSim {
 
             }
         }
+        StdOut.println("You slept " + hours + " hours.");
+        player.incrementHealth(hours - 8);
+        StdOut.println("Your health is now " + player.getHealth() + ".");
+        if (player.getHealth() <= 0) {
+            alive = false;
+            StdOut.println("You died! Should've gotten some sleep!");
+        }
+        day++;
 
     }
     
