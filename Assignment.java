@@ -1,34 +1,79 @@
-import java.util.ArrayList;
+public class Assignment {
+    private static String assignmentType;
+    private static String assignmentTopic;
+    private static String assignmentMessage;
+    private static int tier;
+    private double score;
 
-public class Grades {
-    private static ArrayList<Assignment> assignmentList = new ArrayList<Assignment>();
-
-    public static void addAssignment(Assignment a) {
-        assignmentList.add(a);
+    public Assignment(String type, int assignmentTier, String topic, String message) {
+        tier = assignmentTier;
+        assignmentTopic = topic;
+        assignmentType = type;
+        assignmentMessage = message;
+        score = 0.0;
     }
 
-    public static void scoreAssignment(Assignment a, Person p, int hours) {
-        int tier = a.getTier();
-        int intelligence = p.getIntelligence();
-        double score = ((double) tier)/ 5 * hours * hours + intelligence;
-        a.setScore(score);
+    public String getAssignmentMessage() {
+        return assignmentMessage;
     }
 
-    public static double calculateGPA() {
-        if (assignmentList.size() == 0)
-            return 100.0;
-        double weight = 0.0;
-        double total = 0.0;
-        for (Assignment a : assignmentList) {
-            weight += 1 / (double)a.getTier();
-            total += (1 / (double)a.getTier()) * a.getScore();
+    public String getAssignmentTopic() {
+        return assignmentTopic;
+    }
+
+    public String getAssignmentType() {
+        return assignmentType;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public static Assignment generateAssignment(Course course) {
+        String[] topicArrayAB = {
+                "18th century sex appeal", "gargoyles", "the history of P = NP",
+                "monarchs", "the emu war"
+        };
+        String[] assignmentTypeAB = {
+                "paper", "reading", "discussion", "close reading", "exam"
+        };
+
+        String[] topicArrayBSE = {
+                "multivariable calculus", "titrations", "geometry of plates",
+                "intermolecular bonding", "the reproductive system", "rat anatomy",
+                "inheritance", "recursion", "Sierpinski's triangles", "boolean algebra"
+        };
+        String[] assignmentTypeBSE = {
+                "problem set", "exam", "exam prep", "lab report", "quiz"
+        };
+
+        if (course.getName().equals("BSE")) {
+            int assignmentTypeIndex = StdRandom.uniform(assignmentTypeBSE.length);
+            assignmentType = assignmentTypeBSE[assignmentTypeIndex];
+            int topicIndex = StdRandom.uniform(topicArrayBSE.length);
+            assignmentTopic = topicArrayBSE[topicIndex];
         }
-        return total / weight;
+        else if (course.getName().equals("AB")) {
+            int assignmentTypeIndex = StdRandom.uniform(assignmentTypeAB.length);
+            assignmentType = assignmentTypeAB[assignmentTypeIndex];
+            int topicIndex = StdRandom.uniform(topicArrayAB.length);
+            assignmentTopic = topicArrayAB[topicIndex];
+        }
+        String message = "You have been assigned a(n) " + assignmentType
+                + " on " + assignmentTopic;
+        return new Assignment(assignmentType, tier, assignmentTopic, message);
     }
 
-    /* public String assignment(String class, int time, int intelligence) {
-        int index = 0;
-        for (int i = 0; i < classes.length; i++) {
-        }
-    } */
+    public String toString() {
+        return assignmentMessage;
+    }
+
 }
