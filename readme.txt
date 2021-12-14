@@ -20,7 +20,7 @@ Project preceptor name: Alfredo Velasco
 
 Project title: FreshmanSim
 
-CodePost link for proposal feedback:
+CodePost link for proposal feedback: https://codepost.io/code/507054
 
 Link to project video:
 
@@ -33,19 +33,84 @@ Number of hours:
 
 Describe your project in a few sentences.
 
+Our project is a text-based role playing game that simulates the life of a
+first-year Princeton Universitty student. This includes social activities,
+assignments and exams, and some interesting events!
+
 
 
 
 Describe in detail your three features and where in your program
 they are implemented (e.g. starting and ending line numbers,
 function names, etc.).
+
 1.
 
+The Person class (called 'Player' in the proposal) is defined in Person.java.
+This class includes 5 player attributes defined as instance variables, these are:
+the player's health, happiness, bank, intelligence, and charisma. There are 11
+methods defined in this class (excluding the constructor), namely:
+incrementHappiness(), incrementHealth(), incrementIntelligence(),
+incrementCharisma(), getBank(), getHealth(), getHappiness, getIntelligence(),
+getCharisma() and a toString and main method.
+In the main method, every function listed above is called.
+
+In FreshmanSim, the client for our program, a Person object is created to
+represent the main player, and the above functions are called as a result
+of the player's actions. For example, skipping a social event will call
+incrementCharisma() and the charisma variable for that player will be decreased.
 
 2.
 
+The Grades, Course and Assignment classes ("Course selection class" in the proposal),
+represent the course selection process, the calculation of a player's overall GPA,
+and the generation of assignments, Grades.java includes the definition of Grades,
+Course.java the definition of Course and Assignment.java the definition for Assignment.
+
+Grades has one instance variable, 3 static methods and a main method. The
+instance variable is an ArrayList of Assignment objects (Assignment is a class
+defined in Assignment.java). The 3 static methods are addAssignment(),
+scoreAssignment(), and calculateGPA(). In the main method, every function listed
+above is called.
+
+Course has one instance variable, one constructor, one method and a main method.
+The instance variable is a string cName, that defines the AB or BSE path. The
+method is getName() and it is called in the main method.
+
+Assignment has 5 instance variables, a constructor, and 8 methods with a main method.
+The instance variables are assignmentType, assignmentTopic, assignmentMessage,
+tier, and score. The 8 methods consist of getter methods for each instance variable
+and a setScore() method. There is also a static generateAssignment() method. The
+main method tests all of the functions.
+
+In FreshmanSim, the client for our program, a Course object is initally created
+based on the user's preference of an AB or BSE course load. AB or BSE-type Assignments
+are then generated using generateAssignment() and shown to the user. A Grades object
+is not created as the related methods are static. The methods in the Grades class
+are used mainly on Assignment objects in the FreshmanSim client. For example,
+Grades.scoreAssignment() takes in an assignment as an argument (among other
+arguments) and calls setScore() (of the Assignment class) to grade the assignment
+based on how much time the user allocates for the assignment.
+
 
 3.
+
+The Event class (described by "Social Life" in the proposal) is defined in
+Event.java. It includes 5 instance variables, two constructors, 7 methods and a
+main method. The 5 instance variables are the eventMessage, the description, the
+cost of the event, whether or not it is a voluntary event, and the number of hours
+of an involuntary event. The constructors vary based on whether or not the event
+is voluntary. An involuntary event includes an hours argument that denotes how
+long the event must take. The remaining methods are getter and setter methods as
+well as an isVoluntary() method, a toString() and a generateEvent() method. The
+main method calls all of the defined method.
+
+In FreshmanSim, the client for our program, an Event is similar to an Assignment.
+Event objects are created at the start of every day and the user chooses whether
+or not to attend the event (if it is a voluntary event) based on the number
+of hours they commit to it. Skipping events decreases a player's charisma and
+attending an event increases charisma but costs money. To generate an assignment,
+a string is pseudo-randomly customized based on the player's charisma.
 
 
 
@@ -55,13 +120,20 @@ outputs (e.g. graphical or auditory), feel free to describe in words what the
 output should be or reference output files (e.g. images, audio files) of the
 expected output.
 
-
+To compile and run this program, the user compiles and runs FreshmanSim from the
+command-line. The expected result of this is a text-based opening screen which includes a
+welcome message, instructions and the option to choose your difficulty level.
+Once the difficulty level is chosen, a concentration area is chosen, and events
+and assignments are then generated.
 
 
 
 Describe how your program accepts user input and mention the line number(s) at
 which your program accepts user input.
 
+The program accepts user input from the command line in FreshmanSim.java at lines
+37, 61, 81, 96, 153, 158, 191, 207. This input is used to determine the way that
+the game unfolds.
 
 
 
@@ -69,6 +141,11 @@ which your program accepts user input.
 Describe how your program produces output based on user input (mention line
 numbers).
 
+Since this is a text-based RPG, output is very abdundant throughout FreshmanSim.
+In the main method, there is output that confirms the user's input and improves
+readability. When the user inputs a choice for the number of hours to spend on each
+assignment or at an event and gets through the day, there is an "End of Day" output
+(102 - 145) that depends on the player's attribute levels.
 
 
 
@@ -76,8 +153,10 @@ Describe the data structure your program uses and how it supports your program's
 functionality (include the variable name and the line number(s) at which it is
 declared and initialized).
 
-
-
+Our program uses arrays to store the mutable parts of the event and assignment
+statements. Examples of this are in lines 57, 66 and 72, of Event.java and 55, 62,
+66, and 72 of Assignment.java. Other data structures used include an ArrayList,
+in Grades.java at line 6.
 
 
 List the two custom functions written by your project group, including function
@@ -100,7 +179,6 @@ should be or reference output files (e.g. images, audio files).
 
 4.
 
-
 /**********************************************************************
  * Citing Resources                                                   *
  **********************************************************************/
@@ -119,16 +197,19 @@ Did you receive help from classmates, past COS 126 students, or anyone else?
 If so, please list their names.  ("A Sunday lab TA" or "Office hours on
 Thursday" is ok if you don't know their name.)
 Yes or no?
+No
 
 
 
 Did you encounter any serious problems? If so, please describe.
 Yes or no?
+No
 
 
 
 
 List any other comments here.
+We loved this course, COS126 was great! It was a fun ride :)
 
 
 
