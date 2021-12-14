@@ -1,12 +1,19 @@
 import java.util.ArrayList;
 
+// Represents a collection of assignments and allows for operations to be
+// performed on individual assignments and the collection as a whole
 public class Grades {
-    private static ArrayList<Assignment> assignmentList = new ArrayList<Assignment>();
+    private static ArrayList<Assignment> assignmentList
+            = new ArrayList<Assignment>(); // The array list of assignments
 
+    // Adds an assignment to the assignment list
     public static void addAssignment(Assignment a) {
         assignmentList.add(a);
     }
 
+    // Scores a given assignment, based on the person, and especially their
+    // intelligence, and the number of hours put into work
+    // Algorithm for grading is tier/5 * hours ^ 2 + intelligence
     public static void scoreAssignment(Assignment a, Person p, int hours) {
         double score;
         if (hours == 0) {
@@ -22,6 +29,7 @@ public class Grades {
         a.setScore(score);
     }
 
+    // Returns the GPA, based on the total assignments done
     public static double calculateGPA() {
         if (assignmentList.size() == 0)
             return 100.0;
@@ -36,10 +44,4 @@ public class Grades {
         else
             return (double) ((int) (100 * (total / weight))) / 100;
     }
-
-    /* public String assignment(String class, int time, int intelligence) {
-        int index = 0;
-        for (int i = 0; i < classes.length; i++) {
-        }
-    } */
 }
