@@ -44,12 +44,28 @@ public class FreshmanSim {
 
             }
         }
+            
         StdOut.println("You slept " + hours + " hours.");
         player.incrementHealth(hours - 8);
         StdOut.println("Your health is now " + player.getHealth() + ".");
         if (player.getHealth() <= 0) {
             alive = false;
             StdOut.println("You died! Should've gotten some sleep!");
+        }
+        StdOut.println("Your GPA is now " + Grades.calculateGPA() + ".");
+        if (Grades.calculateGPA() < 50) {
+            alive = false;
+            StdOut.println("Failures don't belong in Princeton! Get out!");
+        }
+        else if (Grades.calculateGPA() < 70) {
+            player.incrementHappiness(2 * -day);
+        }
+        else {
+            player.incrementHappiness(-day);
+        }
+        
+        if (player.getHappiness() < 0) {
+            StdOut.println("You have no motivation! You dropped out!");
         }
         day++;
 
