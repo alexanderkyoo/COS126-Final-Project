@@ -1,5 +1,5 @@
 public class Event {
-    private static String eventMessage;
+    private String eventMessage;
     private String descrip;
     private double cost;
     private boolean voluntary;
