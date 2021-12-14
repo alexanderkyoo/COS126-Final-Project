@@ -35,7 +35,8 @@ public class Person {
     public void incrementintelligence(int a) {
         intelligence += a;
     }
-    
+
+    // Increments player's charisma by a, which can be negative or positive
     public void incrementCharisma(int a) {
         charisma += a;
     }
@@ -54,7 +55,8 @@ public class Person {
     public int getIntelligence() {
         return intelligence;
     }
-    
+
+    // Retrieves player's charisma
     public int getCharisma() {
         return charisma;
     }
@@ -77,9 +79,11 @@ public class Person {
         bezos.incrementHealth(5);
         bezos.incrementHappiness(6);
         bezos.incrementintelligence(2);
+        bezos.incrementCharisma(10);
         StdOut.println(bezos.getHealth());
         StdOut.println(bezos.getHappiness());
         StdOut.println(bezos.getIntelligence());
+        StdOut.println(bezos.getCharisma());
 
     }
 }
