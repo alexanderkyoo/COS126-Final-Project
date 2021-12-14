@@ -40,7 +40,7 @@ public class Assignment {
     public static Assignment generateAssignment(Course course) {
         String assignmentType = "";
         String assignmentTopic = "";
-        int tier = 0;
+        int tier;
         String[] topicArrayAB = {
                 "18th century sex appeal", "gargoyles", "the history of P = NP",
                 "monarchs", "the emu war"
@@ -70,6 +70,14 @@ public class Assignment {
             int topicIndex = StdRandom.uniform(topicArrayAB.length);
             assignmentTopic = topicArrayAB[topicIndex];
         }
+
+        if (assignmentType.equals("exam") || assignmentType.equals("paper"))
+            tier = 1;
+        else if (assignmentType.equals("close reading") || assignmentType.equals("quiz")
+                || assignmentType.equals("exam prep"))
+            tier = 2;
+        else
+            tier = 3;
         String message = "You have been assigned a(n) " + assignmentType
                 + " on " + assignmentTopic;
         return new Assignment(assignmentType, tier, assignmentTopic, message);
