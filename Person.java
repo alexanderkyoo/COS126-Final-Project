@@ -11,6 +11,31 @@ public class Person {
         this.intelligence = intelligence;
     }
 
+    public void incrementHappiness(int a) {
+        happiness += a;
+    }
+
+    public void incrementHealth(int a) {
+        if (a < 0) {
+            health += 2 * a;
+        }
+        else {
+            health += a;
+        }
+    }
+
+    public void incrementintelligence(int a) {
+        intelligence += a;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
     public int getIntelligence() {
         return intelligence;
     }
