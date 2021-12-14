@@ -3,7 +3,7 @@
 // difficulty, type, and topic.
 public class Assignment {
     private String assignmentType; // Represents the type of assignment
-    private String assignmentTopic; // Reprsents the topic of the assignment
+    private String assignmentTopic; // Represents the topic of the assignment
     private String assignmentMessage; // Represents the String form of the assignment
     private int tier; // Represents the tier of assignment, lower being harder
     private double score; // Represents the final score on the assignment
@@ -54,7 +54,10 @@ public class Assignment {
         int tier;
         String[] topicArrayAB = {
                 "18th century sex appeal", "gargoyles", "the history of P = NP",
-                "monarchs", "the emu war"
+                "monarchs", "the emu war", "dinosaur ethics", "life as a clock",
+                "the history of pepper jack cheese", "Pepperidge farms", "cranberry stomping",
+                "the music theory of Weird Al"
+
         };
         String[] assignmentTypeAB = {
                 "paper", "reading", "discussion", "close reading", "exam"
@@ -63,7 +66,8 @@ public class Assignment {
         String[] topicArrayBSE = {
                 "multivariable calculus", "titrations", "geometry of plates",
                 "intermolecular bonding", "the reproductive system", "rat anatomy",
-                "inheritance", "recursion", "Sierpinski's triangles", "boolean algebra"
+                "inheritance", "recursion", "Sierpinski's triangles", "boolean algebra",
+                "arson"
         };
         String[] assignmentTypeBSE = {
                 "problem set", "exam", "exam prep", "lab report", "quiz"
