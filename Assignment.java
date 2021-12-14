@@ -1,8 +1,8 @@
 public class Assignment {
-    private static String assignmentType;
-    private static String assignmentTopic;
-    private static String assignmentMessage;
-    private static int tier;
+    private String assignmentType;
+    private String assignmentTopic;
+    private String assignmentMessage;
+    private int tier;
     private double score;
 
     public Assignment(String type, int assignmentTier, String topic, String message) {
@@ -38,6 +38,9 @@ public class Assignment {
     }
 
     public static Assignment generateAssignment(Course course) {
+        String assignmentType = "";
+        String assignmentTopic = "";
+        int tier = 0;
         String[] topicArrayAB = {
                 "18th century sex appeal", "gargoyles", "the history of P = NP",
                 "monarchs", "the emu war"
@@ -75,5 +78,4 @@ public class Assignment {
     public String toString() {
         return assignmentMessage;
     }
-
 }
