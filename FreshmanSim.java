@@ -4,39 +4,49 @@ public class FreshmanSim {
     private static Course course;
     private static Grades grades;
 
-    public static void advanceDay() {
+        public static void advanceDay() {
         // run assignment and event generators
         // ask user how many hours to spend on each assignment/event
         // calculate corresponding grade changes, attribute changes, etc.
         StdOut.println("Day " + day + " begins!");
         int hours = 24;
-        Assignment todays = Assignment.generateAssignment(course);
-        StdOut.println(todays);
-        StdOut.println("How long do you wish to spend on this " + todays.getAssignmentType() + "?");
-        StdOut.println("------------------------------");
-        StdOut.println("Enter an *integer* from 0 to " + hours + ":");
-        int work = (int) StdIn.readDouble();
+        Assignment[] assignments = new Assignment[4];
+        for (int i = 0; i < 4; i++) {
+            assignments[i] = Assignment.generateAssignment(course);
+            StdOut.println(assignments[i]);
+        }
 
-        boolean hoursChecked = false;
-        while (!hoursChecked) {
-            if (work >= 0 && work <= hours) {
-                hours -= work;
-                Grades.addAssignment(todays);
-                Grades.scoreAssignment(todays, player);
-                StdOut.println(
-                        "You scored a " + todays.getScore() + " on the " +
-                                todays.getAssignmentType() + ".");
-                hoursChecked = true;
-            }
-            else {
-                StdOut.println("There is not enough time in the day for that."
-                                       + "\n" + "Enter the number of hours: ");
-                work = StdIn.readInt();
+        StdOut.println("------------------------------");
+        
+        for (int i = 0; i < 4; i++) {
+            StdOut.println(
+                    "How long do you wish to spend on this " + assignments[i].getAssignmentType()
+                            + " about " + assignments[i].getAssignmentTopic() + "?");
+            StdOut.println("------------------------------");
+            StdOut.println("Enter an *integer* from 0 to " + hours + ":");
+            int work = (int) StdIn.readDouble();
+            boolean hoursChecked = false;
+            while (!hoursChecked) {
+                if (work >= 0 && work <= hours) {
+                    hours -= work;
+                    Grades.addAssignment(assignments[i]);
+                    Grades.scoreAssignment(assignments[i], player);
+                    StdOut.println(
+                            "You scored a " + assignments[i].getScore() + " on the " +
+                                    assignments[i].getAssignmentType() + ".");
+                    hoursChecked = true;
+                }
+                else {
+                    StdOut.println("There is not enough time in the day for that."
+                                           + "\n" + "Enter the number of hours: ");
+                    work = StdIn.readInt();
+                }
+
             }
         }
 
     }
-
+    
     public static void main(String[] args) {
 
         StdOut.println("Welcome to the Princeton Freshman Simulator!");
