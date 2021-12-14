@@ -1,12 +1,14 @@
 public class Event {
+    private static String eventMessage;
     private String descrip;
     private double cost;
     private boolean voluntary;
 
-    public Event(String descrip, double cost, boolean voluntary) {
+    public Event(String descrip, double cost, boolean voluntary, String message) {
         this.descrip = descrip;
         this.cost = cost;
         this.voluntary = voluntary;
+        eventMessage = message;
     }
 
     public String getDescrip() {
@@ -22,7 +24,7 @@ public class Event {
     }
 
     public static Event generateEvent(int charisma) {
-        String name;
+        String name, message;
         double price;
         boolean willing;
         if (charisma > 80) {
@@ -43,9 +45,18 @@ public class Event {
         else {
             String[] events = { "mugging", "wedgie", "blackmail", "coercion", "extortion" };
             name = events[StdRandom.uniform(events.length)];
-            price = Double.MAX_VALUE;
+            price = StdRandom.uniform(35, 55) * 10;
             willing = false;
         }
-        return new Event(name, price, willing);
+        if (willing)
+            message = "You have been invited to a " + name;
+        else
+            message = "You are involved in a(n) " + name;
+
+        return new Event(name, price, willing, message);
+    }
+
+    public String toString() {
+        return eventMessage;
     }
 }
