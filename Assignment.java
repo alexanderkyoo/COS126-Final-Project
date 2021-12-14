@@ -98,4 +98,16 @@ public class Assignment {
     public String toString() {
         return assignmentMessage;
     }
+
+    public static void main(String[] args) {
+        Course ab = new Course("AB");
+        Assignment superbAss = Assignment.generateAssignment(ab);
+        StdOut.println(superbAss);
+        superbAss.setScore(12.3);
+        StdOut.println(superbAss.getScore());
+        StdOut.println(superbAss.getTier());
+        StdOut.println(superbAss.getAssignmentTopic());
+        StdOut.println(superbAss.getAssignmentType());
+        StdOut.println(superbAss.getAssignmentMessage());
+    }
 }
