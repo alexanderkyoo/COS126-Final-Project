@@ -11,11 +11,62 @@ public class FreshmanSim {
         // calculate corresponding grade changes, attribute changes, etc.
         StdOut.println("Day " + day + " begins!");
         int hours = 24;
+        Event event = Event.generateEvent(player.getCharisma());
+        if (!event.isVoluntary()) {
+            StdOut.println(event.getEventMessage());
+            int healthDecrease = StdRandom.uniform(-10, -5);
+            int charismaDecrease = StdRandom.uniform(-10, -5);
+            double moneyDecrease = event.getCost();
+            player.incrementHealth(healthDecrease);
+            player.incrementCharisma(charismaDecrease);
+            player.getBank().withdraw(moneyDecrease);
+
+            StdOut.println("Your health decreased by " + -healthDecrease
+                                   + "\n" + "Your charisma decreased by " + -charismaDecrease
+                                   + "\n" + "Your bank balance decreased by " + -moneyDecrease);
+            StdOut.println("------------------------------");
+            hours -= event.getHours();
+        }
+        else {
+            StdOut.println(event.getEventMessage());
+            StdOut.println("How long do you wish to spend at this event?");
+            StdOut.println("------------------------------");
+            StdOut.println("Enter an integer from 0 to " + hours + ":");
+            int work = (int) StdIn.readDouble();
+            boolean hoursChecked = false;
+            while (!hoursChecked) {
+                if (work > 0 && work <= hours) {
+                    hours -= work;
+                    int charisma = StdRandom.uniform(1, 5);
+                    player.incrementCharisma(charisma);
+                    StdOut.println("Your charisma increased by " + charisma);
+                    double moneyDecrease = event.getCost();
+                    player.getBank().withdraw(moneyDecrease);
+                    StdOut.println("You spent $" + moneyDecrease + " at this event.");
+                    hoursChecked = true;
+                }
+                else if (work == 0) {
+                    int charisma = StdRandom.uniform(-5, -1);
+                    player.incrementCharisma(charisma);
+                    StdOut.println(
+                            "You skipped the event! Your charisma decreased by " + -charisma);
+                    StdOut.println("------------------------------");
+                    hoursChecked = true;
+                }
+                else {
+                    StdOut.print("There is not enough time in the day for that."
+                                         + "\n" + "Enter the number of hours: ");
+                    work = StdIn.readInt();
+                }
+            }
+
+        }
         Assignment[] assignments = new Assignment[4];
         for (int i = 0; i < 4; i++) {
             assignments[i] = Assignment.generateAssignment(course);
             StdOut.println(assignments[i]);
         }
+
 
         StdOut.println("------------------------------");
 
@@ -38,21 +89,25 @@ public class FreshmanSim {
                     hoursChecked = true;
                 }
                 else {
-                    StdOut.println("There is not enough time in the day for that."
-                                           + "\n" + "Enter the number of hours: ");
+                    StdOut.print("There is not enough time in the day for that."
+                                         + "\n" + "Enter the number of hours: ");
                     work = StdIn.readInt();
                 }
 
             }
         }
 
+        StdOut.println("<<<<<<<<<<<<<<<<<<<<<<< End of Day >>>>>>>>>>>>>>>>>>>>>>");
         StdOut.println("You slept " + hours + " hours.");
         player.incrementHealth(hours - 8);
         if (player.getHealth() > 100) player.incrementHealth(100 - player.getHealth());
-        StdOut.println("Your health is now " + player.getHealth() + ".");
         if (player.getHealth() <= 0) {
             alive = false;
             StdOut.println("You died! Should've gotten some sleep!");
+        }
+        if (player.getCharisma() < 20) {
+            StdOut.println("Nobody seems to like you here! I'd suggest transferring to Harvard...");
+            alive = false;
         }
         StdOut.println("Your GPA is now " + Grades.calculateGPA() + ".");
         if (Grades.calculateGPA() < 50) {
@@ -69,6 +124,7 @@ public class FreshmanSim {
         if (player.getHappiness() < 0) {
             StdOut.println("You have no motivation! You dropped out!");
         }
+        StdOut.println(player);
         day++;
     }
 
