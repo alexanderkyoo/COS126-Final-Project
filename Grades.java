@@ -34,7 +34,7 @@ public class Grades {
         if (total / weight > 100)
             return 100;
         else
-            return total / weight;
+            return (double) ((int) (100 * (total / weight))) / 100;
     }
 
     /* public String assignment(String class, int time, int intelligence) {
