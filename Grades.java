@@ -47,12 +47,21 @@ public class Grades {
 
     public static void main(String[] args) {
         Course bse = new Course("BSE");
-        Assignment a = Assignment.generateAssignment(bse);
+        // testing of one assignment
+        Assignment assn1 = Assignment.generateAssignment(bse);
         Financials bank = new Financials(100);
         Person p = new Person(50, 50, bank, 60);
-        Grades.addAssignment(a);
-        Grades.scoreAssignment(a, p, 5);
-        StdOut.println(a.getScore());
-        StdOut.println(Grades.calculateGPA());
+        Grades.addAssignment(assn1);
+        Grades.scoreAssignment(assn1, p, 5);
+        StdOut.println("get score of assignment 1: " + assn1.getScore());
+        StdOut.println("get tier of assignment 1: " + assn1.getTier());
+        StdOut.println("GPA after 1 assignment added: " + Grades.calculateGPA());
+        // testing of multiple assignments
+        Assignment assn2 = Assignment.generateAssignment(bse);
+        Grades.addAssignment(assn2);
+        Grades.scoreAssignment(assn2, p, 5);
+        StdOut.println("get score of assignment 2: " + assn2.getScore());
+        StdOut.println("get tier of assignment 2: " + assn2.getTier());
+        StdOut.println("GPA after 2 assginemnts added: " + Grades.calculateGPA());
     }
 }
