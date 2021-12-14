@@ -102,6 +102,7 @@ public class FreshmanSim {
         StdOut.println("<<<<<<<<<<<<<<<<<<<<<<< End of Day >>>>>>>>>>>>>>>>>>>>>>");
         StdOut.println("You slept " + hours + " hours.");
         player.incrementHealth(hours - 8);
+        player.incrementHappiness(hours - 8);
         if (player.getHealth() > 100) player.incrementHealth(100 - player.getHealth());
         if (player.getHealth() <= 0) {
             alive = false;
@@ -112,7 +113,10 @@ public class FreshmanSim {
             alive = false;
         }
         StdOut.println("Your GPA is now " + Grades.calculateGPA() + ".");
-        if (Grades.calculateGPA() > 70) player.incrementintelligence(1);
+        if (Grades.calculateGPA() > 70) {
+            player.incrementintelligence(1);
+            player.incrementHappiness((int) (Grades.calculateGPA() - 70) / 10);
+        }
         else if (Grades.calculateGPA() < 60) player.incrementintelligence(-1);
 
         if (Grades.calculateGPA() < 50) {
@@ -120,14 +124,21 @@ public class FreshmanSim {
             StdOut.println("Failures don't belong in Princeton! Get out!");
         }
         else if (Grades.calculateGPA() < 70) {
-            player.incrementHappiness(2 * -day);
+            player.incrementHappiness(-day / 2);
         }
         else {
-            player.incrementHappiness(-day);
+            player.incrementHappiness(-day / 3);
         }
 
         if (player.getHappiness() < 0) {
             StdOut.println("You have no motivation! You dropped out!");
+            alive = false;
+        }
+
+        if (player.getBank().getBalance() < 0) {
+            StdOut.println("You're broke! Even Princeton doesn't have "
+                                   + "enough financial aid to save you!");
+            alive = false;
         }
         StdOut.println(player);
         day++;
@@ -199,6 +210,8 @@ public class FreshmanSim {
         while (alive) {
             FreshmanSim.advanceDay();
         }
+
+        StdOut.println("Game Over! You survived " + (day - 1) + " days at Princeton.");
 
     }
 }
