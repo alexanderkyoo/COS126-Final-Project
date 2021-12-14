@@ -8,9 +8,17 @@ public class Grades {
     }
 
     public static void scoreAssignment(Assignment a, Person p, int hours) {
-        int tier = a.getTier();
-        int intelligence = p.getIntelligence();
-        double score = ((double) tier) / 5 * hours * hours + intelligence;
+        double score;
+        if (hours == 0) {
+            score = 0;
+        }
+        else {
+            int tier = a.getTier();
+            int intelligence = p.getIntelligence();
+            score = intelligence + ((double) tier / 5) * Math.pow(hours, 2);
+            if (score > 100)
+                score = 100;
+        }
         a.setScore(score);
     }
 
@@ -23,7 +31,10 @@ public class Grades {
             weight += 1 / (double) a.getTier();
             total += (1 / (double) a.getTier()) * a.getScore();
         }
-        return total / weight;
+        if (total / weight > 100)
+            return 100;
+        else
+            return total / weight;
     }
 
     /* public String assignment(String class, int time, int intelligence) {
