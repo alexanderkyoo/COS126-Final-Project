@@ -24,9 +24,6 @@ public class Financials {
 
     // Withdraws money from the balance, but limited by amount in balance
     public String withdraw(double amount) {
-        if (amount > balance) {
-            return "Are you broke? You don't have that kind of money!";
-        }
         balance -= amount;
         return "You now have $" + balance + " in your account";
     }
